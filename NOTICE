@@ -1,0 +1,11 @@
+ha-cololight-local
+Copyright (c) 2026 the ha-cololight-local authors, MIT License (see LICENSE)
+
+The effect tables in custom_components/cololight_local/effects.py come from
+pycololight (https://github.com/BazaJayGee66/pycololight), distributed under
+the MIT License:
+
+    Copyright (c) 2021 BazaJayGee66
+
+The local protocol was first described in "Projekt: ColoLight in FHEM"
+(https://haus-automatisierung.com/projekt/2019/04/05/projekt-cololight-fhem.html).

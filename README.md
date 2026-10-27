@@ -484,4 +484,4 @@ Not affiliated with LifeSmart.
 ## License
 
 MIT, see [`LICENSE`](LICENSE). The effect tables are derived from pycololight (MIT, © 2021
-BazaJayGee66).
+BazaJayGee66); see [`NOTICE`](NOTICE).
