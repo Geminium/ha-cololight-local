@@ -1,0 +1,22 @@
+{
+  "domain": "cololight_local",
+  "name": "Cololight (local)",
+  "codeowners": [],
+  "config_flow": true,
+  "dependencies": ["network"],
+  "dhcp": [
+    {
+      "registered_devices": true
+    },
+    {
+      "macaddress": "4C11AE*"
+    }
+  ],
+  "documentation": "https://github.com/Geminium/ha-cololight-local",
+  "integration_type": "device",
+  "iot_class": "local_polling",
+  "issue_tracker": "https://github.com/Geminium/ha-cololight-local/issues",
+  "loggers": ["custom_components.cololight_local"],
+  "requirements": [],
+  "version": "1.0.0"
+}

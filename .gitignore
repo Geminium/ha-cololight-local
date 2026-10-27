@@ -1,0 +1,13 @@
+# Test logs of the reverse-engineering phase (may contain network details)
+logs/
+# Network captures contain account identifiers: never commit them
+*.pcap
+*.pcapng
+captures/
+
+__pycache__/
+*.pyc
+.pytest_cache/
+.coverage
+htmlcov/
+.ruff_cache/

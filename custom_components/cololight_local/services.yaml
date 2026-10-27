@@ -1,0 +1,60 @@
+save_state:
+  target:
+    entity:
+      integration: cololight_local
+      domain: light
+
+set_custom_effect:
+  target:
+    entity:
+      integration: cololight_local
+      domain: light
+  fields:
+    scheme:
+      required: true
+      example: Mood
+      selector:
+        select:
+          options:
+            - Breath
+            - Shadow
+            - Flash
+            - Flicker
+            - Scene
+            - Mood
+            - Selected
+    color:
+      required: true
+      example: Red
+      selector:
+        text:
+    speed:
+      default: 16
+      example: 16
+      selector:
+        number:
+          min: 0
+          max: 32
+          step: 1
+          mode: slider
+    mode:
+      default: 1
+      example: 1
+      selector:
+        number:
+          min: 1
+          max: 27
+          step: 1
+          mode: box
+
+set_effect_code:
+  target:
+    entity:
+      integration: cololight_local
+      domain: light
+  fields:
+    code:
+      required: true
+      example: "049a0000"
+      selector:
+        text:

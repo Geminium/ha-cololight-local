@@ -1,0 +1,226 @@
+{
+  "config": {
+    "flow_title": "{name} ({host})",
+    "step": {
+      "user": {
+        "title": "Add a Cololight",
+        "description": "These lamps answered on your network. Choose one, or enter an IP address manually.",
+        "data": {
+          "device": "Lamp"
+        },
+        "data_description": {
+          "device": "Lamps that are already configured are not listed."
+        }
+      },
+      "manual": {
+        "title": "Enter the IP address",
+        "description": "No new lamp was found automatically, or you chose to enter its address. The lamp must be powered and connected to your Wi-Fi.",
+        "data": {
+          "host": "IP address"
+        },
+        "data_description": {
+          "host": "Address of the lamp on your local network, for example 192.168.0.51. A fixed address (DHCP reservation in your router) is recommended."
+        }
+      },
+      "device": {
+        "title": "Choose the model",
+        "description": "Cololight found at {host} (MAC {mac}). The model sets the list of available effects.",
+        "data": {
+          "model": "Model"
+        },
+        "data_description": {
+          "model": "The lamp cannot report its model over the local network: choose it here."
+        }
+      },
+      "discovery_confirm": {
+        "title": "Cololight discovered",
+        "description": "A Cololight was found at {host} (MAC {mac}). Choose its model to add it.",
+        "data": {
+          "model": "Model"
+        },
+        "data_description": {
+          "model": "The model sets the list of available effects."
+        }
+      },
+      "reconfigure": {
+        "title": "Reconfigure the Cololight",
+        "description": "Change the address or the model of this lamp.",
+        "data": {
+          "host": "IP address",
+          "model": "Model"
+        },
+        "data_description": {
+          "host": "Address of the lamp on your local network.",
+          "model": "The model sets the list of available effects."
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "No Cololight answered at this address. Check the address, and that the lamp is powered and connected to your Wi-Fi."
+    },
+    "abort": {
+      "already_configured": "This lamp is already configured.",
+      "already_in_progress": "This lamp is already being set up.",
+      "not_cololight": "This device is not a Cololight: it does not answer the local protocol.",
+      "unique_id_mismatch": "Another lamp answered at this address. To add a new lamp, use \"Add device\" instead.",
+      "reconfigure_successful": "The configuration has been updated."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Cololight options",
+        "menu_options": {
+          "settings": "Settings",
+          "add_custom_effect": "Add a custom effect",
+          "remove_custom_effects": "Remove custom effects"
+        }
+      },
+      "settings": {
+        "title": "Settings",
+        "data": {
+          "scan_interval": "Polling interval",
+          "save_as_default": "Save the state as power-on state automatically",
+          "save_delay": "Delay before saving",
+          "hidden_effects": "Hidden effects"
+        },
+        "data_description": {
+          "scan_interval": "How often the state of the lamp is read, in seconds. Changes made with the Cololight app show up after at most this delay.",
+          "save_as_default": "Once the state has stopped changing, store it in the lamp's memory so that it comes back after a power cut. The memory wears out with writes: it is written once per change, never on every slider move.",
+          "save_delay": "How long, in seconds, the state must stay unchanged before it is saved.",
+          "hidden_effects": "Built-in effects to remove from the effect list of the light."
+        }
+      },
+      "add_custom_effect": {
+        "title": "Add a custom effect",
+        "description": "The effect joins the effect list of the light, like in the Cololight app. Mode: 1 to {modes} for this model.",
+        "data": {
+          "name": "Name",
+          "scheme_color": "Colour scheme",
+          "speed": "Speed",
+          "mode": "Mode"
+        },
+        "data_description": {
+          "name": "Name shown in the effect list. An existing custom effect with the same name is replaced.",
+          "scheme_color": "Family of the effect and its colour.",
+          "speed": "0 (slowest) to 32 (fastest).",
+          "mode": "Animation pattern, numbered as in the Cololight app."
+        }
+      },
+      "remove_custom_effects": {
+        "title": "Remove custom effects",
+        "data": {
+          "effects": "Effects to remove"
+        }
+      }
+    },
+    "error": {
+      "invalid_name": "Enter a name. It cannot be \"off\" or \"Unknown palette effect\", or start with \"Effect \".",
+      "invalid_custom_effect": "This combination is not valid for this model."
+    },
+    "abort": {
+      "no_custom_effects": "There is no custom effect to remove."
+    }
+  },
+  "selector": {
+    "model": {
+      "options": {
+        "strip": "Strip",
+        "hexagon": "Hexagon"
+      }
+    },
+    "device": {
+      "options": {
+        "manual": "Enter an IP address manually"
+      }
+    }
+  },
+  "entity": {
+    "number": {
+      "effect_speed": {
+        "name": "Effect speed"
+      }
+    },
+    "button": {
+      "save_state": {
+        "name": "Save as power-on state"
+      }
+    }
+  },
+  "services": {
+    "save_state": {
+      "name": "Save as power-on state",
+      "description": "Stores the current colour or effect and brightness in the lamp's memory, so that it starts with them after a power cut. The memory wears out with writes: do not call this very often."
+    },
+    "set_custom_effect": {
+      "name": "Set custom effect",
+      "description": "Starts a custom effect built like in the Cololight app: colour scheme, colour, speed and animation mode.",
+      "fields": {
+        "scheme": {
+          "name": "Colour scheme",
+          "description": "Family of the effect."
+        },
+        "color": {
+          "name": "Colour",
+          "description": "Colour of the scheme, written as in the app: for example \"Red\", \"Rainbow\" or \"Red, Green, Blue\" for Breath, \"Birthday\" for Scene."
+        },
+        "speed": {
+          "name": "Speed",
+          "description": "0 (slowest) to 32 (fastest)."
+        },
+        "mode": {
+          "name": "Mode",
+          "description": "Animation pattern: 1 to 13 on the strip, 1 to 27 on the hexagon."
+        }
+      }
+    },
+    "set_effect_code": {
+      "name": "Send effect code",
+      "description": "Sends raw effect frames to the lamp (advanced). The code of the running effect is shown in the effect_code attribute of the light.",
+      "fields": {
+        "code": {
+          "name": "Code",
+          "description": "One or more frames of 8 hexadecimal digits, separated by spaces or commas, for example \"049a0000\". A frame cannot start with 00."
+        }
+      }
+    }
+  },
+  "exceptions": {
+    "communication_error": {
+      "message": "The Cololight at {host} did not answer. Check that it is powered and connected to your Wi-Fi, then try again."
+    },
+    "command_rejected": {
+      "message": "The lamp rejected the command (error code {code})."
+    },
+    "unknown_effect": {
+      "message": "Unknown effect: {effect}. Effect names are case-sensitive: write the name exactly as in the effect list."
+    },
+    "no_adjustable_speed": {
+      "message": "The current effect has no adjustable speed."
+    },
+    "invalid_custom_effect": {
+      "message": "Invalid custom effect: {error}."
+    },
+    "unknown_custom_color": {
+      "message": "Invalid custom effect: \"{color}\" is not a colour of the {scheme} scheme. Its colours, written exactly like this (case-sensitive): {colors}."
+    },
+    "custom_mode_out_of_range": {
+      "message": "Invalid custom effect: the mode must be between 1 and {max} on this model."
+    },
+    "invalid_effect_code": {
+      "message": "Invalid effect code: {error}."
+    },
+    "no_effect_frame": {
+      "message": "Invalid effect code: give at least one frame of 8 hexadecimal digits, for example \"049a0000\"."
+    },
+    "invalid_effect_frame": {
+      "message": "Invalid effect code: \"{frame}\" is not a frame of 8 hexadecimal digits."
+    },
+    "effect_frame_is_colour": {
+      "message": "Invalid effect code: \"{frame}\" starts with 00, which selects a static colour. Use rgb_color to set a colour."
+    },
+    "cannot_save_unknown_palette": {
+      "message": "The running palette effect is not identified, so it cannot be stored as power-on state. Start it again by its name from Home Assistant, then save."
+    }
+  }
+}

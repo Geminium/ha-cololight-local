@@ -1,0 +1,226 @@
+{
+  "config": {
+    "flow_title": "{name} ({host})",
+    "step": {
+      "user": {
+        "title": "Ajouter une Cololight",
+        "description": "Ces lampes ont répondu sur votre réseau. Choisissez-en une, ou saisissez une adresse IP à la main.",
+        "data": {
+          "device": "Lampe"
+        },
+        "data_description": {
+          "device": "Les lampes déjà configurées n'apparaissent pas."
+        }
+      },
+      "manual": {
+        "title": "Saisir l'adresse IP",
+        "description": "Aucune nouvelle lampe n'a été trouvée automatiquement, ou vous avez choisi de saisir son adresse. La lampe doit être sous tension et connectée à votre Wi-Fi.",
+        "data": {
+          "host": "Adresse IP"
+        },
+        "data_description": {
+          "host": "Adresse de la lampe sur votre réseau local, par exemple 192.168.0.51. Une adresse fixe (réservation DHCP dans votre box) est recommandée."
+        }
+      },
+      "device": {
+        "title": "Choisir le modèle",
+        "description": "Cololight trouvée à l'adresse {host} (MAC {mac}). Le modèle détermine la liste des effets disponibles.",
+        "data": {
+          "model": "Modèle"
+        },
+        "data_description": {
+          "model": "La lampe n'indique pas son modèle sur le réseau local : choisissez-le ici."
+        }
+      },
+      "discovery_confirm": {
+        "title": "Cololight découverte",
+        "description": "Une Cololight a été trouvée à l'adresse {host} (MAC {mac}). Choisissez son modèle pour l'ajouter.",
+        "data": {
+          "model": "Modèle"
+        },
+        "data_description": {
+          "model": "Le modèle détermine la liste des effets disponibles."
+        }
+      },
+      "reconfigure": {
+        "title": "Reconfigurer la Cololight",
+        "description": "Modifiez l'adresse ou le modèle de cette lampe.",
+        "data": {
+          "host": "Adresse IP",
+          "model": "Modèle"
+        },
+        "data_description": {
+          "host": "Adresse de la lampe sur votre réseau local.",
+          "model": "Le modèle détermine la liste des effets disponibles."
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Aucune Cololight n'a répondu à cette adresse. Vérifiez l'adresse, et que la lampe est sous tension et connectée à votre Wi-Fi."
+    },
+    "abort": {
+      "already_configured": "Cette lampe est déjà configurée.",
+      "already_in_progress": "La configuration de cette lampe est déjà en cours.",
+      "not_cololight": "Cet appareil n'est pas une Cololight : il ne répond pas au protocole local.",
+      "unique_id_mismatch": "Une autre lampe a répondu à cette adresse. Pour ajouter une nouvelle lampe, utilisez plutôt « Ajouter un appareil ».",
+      "reconfigure_successful": "La configuration a été mise à jour."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Options de la Cololight",
+        "menu_options": {
+          "settings": "Réglages",
+          "add_custom_effect": "Ajouter un effet personnalisé",
+          "remove_custom_effects": "Supprimer des effets personnalisés"
+        }
+      },
+      "settings": {
+        "title": "Réglages",
+        "data": {
+          "scan_interval": "Intervalle d'interrogation",
+          "save_as_default": "Mémoriser automatiquement comme état au démarrage",
+          "save_delay": "Délai avant mémorisation",
+          "hidden_effects": "Effets masqués"
+        },
+        "data_description": {
+          "scan_interval": "Fréquence de lecture de l'état de la lampe, en secondes. Les changements faits depuis l'application Cololight apparaissent au plus tard après ce délai.",
+          "save_as_default": "Quand l'état ne change plus, il est enregistré dans la mémoire de la lampe pour revenir après une coupure de courant. Cette mémoire s'use à chaque écriture : elle n'est écrite qu'une fois par changement, jamais à chaque mouvement de curseur.",
+          "save_delay": "Durée, en secondes, pendant laquelle l'état doit rester inchangé avant d'être enregistré.",
+          "hidden_effects": "Effets intégrés à retirer de la liste des effets de la lampe."
+        }
+      },
+      "add_custom_effect": {
+        "title": "Ajouter un effet personnalisé",
+        "description": "L'effet rejoint la liste des effets de la lampe, comme dans l'application Cololight. Mode : de 1 à {modes} pour ce modèle.",
+        "data": {
+          "name": "Nom",
+          "scheme_color": "Schéma de couleurs",
+          "speed": "Vitesse",
+          "mode": "Mode"
+        },
+        "data_description": {
+          "name": "Nom affiché dans la liste des effets. Un effet personnalisé du même nom est remplacé.",
+          "scheme_color": "Famille de l'effet et sa couleur.",
+          "speed": "De 0 (le plus lent) à 32 (le plus rapide).",
+          "mode": "Motif d'animation, numéroté comme dans l'application Cololight."
+        }
+      },
+      "remove_custom_effects": {
+        "title": "Supprimer des effets personnalisés",
+        "data": {
+          "effects": "Effets à supprimer"
+        }
+      }
+    },
+    "error": {
+      "invalid_name": "Saisissez un nom. Il ne peut pas être « off » ni « Unknown palette effect », ni commencer par « Effect ».",
+      "invalid_custom_effect": "Cette combinaison n'est pas valable pour ce modèle."
+    },
+    "abort": {
+      "no_custom_effects": "Il n'y a aucun effet personnalisé à supprimer."
+    }
+  },
+  "selector": {
+    "model": {
+      "options": {
+        "strip": "Bandeau (Strip)",
+        "hexagon": "Hexagone (Hexagon)"
+      }
+    },
+    "device": {
+      "options": {
+        "manual": "Saisir une adresse IP à la main"
+      }
+    }
+  },
+  "entity": {
+    "number": {
+      "effect_speed": {
+        "name": "Vitesse de l'effet"
+      }
+    },
+    "button": {
+      "save_state": {
+        "name": "Mémoriser comme état au démarrage"
+      }
+    }
+  },
+  "services": {
+    "save_state": {
+      "name": "Mémoriser comme état au démarrage",
+      "description": "Enregistre la couleur ou l'effet en cours et la luminosité dans la mémoire de la lampe, pour qu'elle redémarre avec ces réglages après une coupure de courant. Cette mémoire s'use à chaque écriture : évitez de l'appeler très souvent."
+    },
+    "set_custom_effect": {
+      "name": "Lancer un effet personnalisé",
+      "description": "Lance un effet personnalisé construit comme dans l'application Cololight : schéma de couleurs, couleur, vitesse et mode d'animation.",
+      "fields": {
+        "scheme": {
+          "name": "Schéma de couleurs",
+          "description": "Famille de l'effet."
+        },
+        "color": {
+          "name": "Couleur",
+          "description": "Couleur du schéma, écrite comme dans l'application (en anglais, majuscules comprises) : par exemple « Red », « Rainbow » ou « Red, Green, Blue » pour Breath, « Birthday » pour Scene."
+        },
+        "speed": {
+          "name": "Vitesse",
+          "description": "De 0 (le plus lent) à 32 (le plus rapide)."
+        },
+        "mode": {
+          "name": "Mode",
+          "description": "Motif d'animation : de 1 à 13 sur le bandeau, de 1 à 27 sur l'hexagone."
+        }
+      }
+    },
+    "set_effect_code": {
+      "name": "Envoyer un code d'effet",
+      "description": "Envoie des trames d'effet brutes à la lampe (usage avancé). Le code de l'effet en cours figure dans l'attribut effect_code de la lampe.",
+      "fields": {
+        "code": {
+          "name": "Code",
+          "description": "Une ou plusieurs trames de 8 chiffres hexadécimaux, séparées par des espaces ou des virgules, par exemple « 049a0000 ». Une trame ne peut pas commencer par 00."
+        }
+      }
+    }
+  },
+  "exceptions": {
+    "communication_error": {
+      "message": "La Cololight à l'adresse {host} n'a pas répondu. Vérifiez qu'elle est sous tension et connectée au Wi-Fi, puis réessayez."
+    },
+    "command_rejected": {
+      "message": "La lampe a refusé la commande (code d'erreur {code})."
+    },
+    "unknown_effect": {
+      "message": "Effet inconnu : {effect}. Écrivez le nom exactement comme dans la liste des effets, majuscules comprises."
+    },
+    "no_adjustable_speed": {
+      "message": "L'effet en cours n'a pas de vitesse réglable."
+    },
+    "invalid_custom_effect": {
+      "message": "Effet personnalisé invalide : {error}."
+    },
+    "unknown_custom_color": {
+      "message": "Effet personnalisé invalide : « {color} » n'est pas une couleur du schéma {scheme}. Ses couleurs, à écrire exactement ainsi (en anglais, majuscules comprises) : {colors}."
+    },
+    "custom_mode_out_of_range": {
+      "message": "Effet personnalisé invalide : le mode doit être compris entre 1 et {max} sur ce modèle."
+    },
+    "invalid_effect_code": {
+      "message": "Code d'effet invalide : {error}."
+    },
+    "no_effect_frame": {
+      "message": "Code d'effet invalide : indiquez au moins une trame de 8 chiffres hexadécimaux, par exemple « 049a0000 »."
+    },
+    "invalid_effect_frame": {
+      "message": "Code d'effet invalide : « {frame} » n'est pas une trame de 8 chiffres hexadécimaux."
+    },
+    "effect_frame_is_colour": {
+      "message": "Code d'effet invalide : « {frame} » commence par 00, ce qui sélectionne une couleur fixe. Utilisez rgb_color pour choisir une couleur."
+    },
+    "cannot_save_unknown_palette": {
+      "message": "L'effet palette en cours n'est pas identifié : il ne peut pas être mémorisé comme état au démarrage. Relancez-le par son nom depuis Home Assistant, puis mémorisez."
+    }
+  }
+}

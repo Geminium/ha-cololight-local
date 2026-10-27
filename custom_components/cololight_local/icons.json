@@ -1,0 +1,25 @@
+{
+  "entity": {
+    "number": {
+      "effect_speed": {
+        "default": "mdi:speedometer"
+      }
+    },
+    "button": {
+      "save_state": {
+        "default": "mdi:content-save"
+      }
+    }
+  },
+  "services": {
+    "save_state": {
+      "service": "mdi:content-save"
+    },
+    "set_custom_effect": {
+      "service": "mdi:palette"
+    },
+    "set_effect_code": {
+      "service": "mdi:code-braces"
+    }
+  }
+}
